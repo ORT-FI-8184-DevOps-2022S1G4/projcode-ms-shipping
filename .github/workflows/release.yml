@@ -8,10 +8,15 @@ jobs:
   releaseDispatch:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Branch Name
+        run: |
+          branch=${{ github.ref }}
+          echo "BRANCH=$(echo $branch | cut -d"/" -f3)" >> $GITHUB_ENV
+      - run: echo ${{ env.BRANCH }}
       - name: Release Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ORT-FI-8184-DevOps-2022S1G4/devops
           event-type: ms-shipping-release
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.event.after }}", "repository": "${{ github.repository }}", "token": "${{ github.token }}", "branch": "${{ github.event.ref }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.event.after }}", "repository": "${{ github.repository }}", "token": "${{ github.token }}", "branch": "${{ env.BRANCH }}"}'

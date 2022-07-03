@@ -14,4 +14,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ORT-FI-8184-DevOps-2022S1G4/devops
           event-type: ms-shipping-release
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.event.push.after }}", "repository": "${{ github.repository }}", "token": "${{ github.token }}", "branch": "${{ github.event.push.ref }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.event.after }}", "repository": "${{ github.repository }}", "token": "${{ github.token }}", "branch": "${{ github.event.ref }}"}'
